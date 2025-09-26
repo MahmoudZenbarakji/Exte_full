@@ -14,15 +14,26 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+        manualChunks: (id) => {
+          // Debug chunking to identify React bundling issues
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor-react'
+          }
+          if (id.includes('node_modules/react-router')) {
+            return 'vendor-router'
+          }
+          if (id.includes('node_modules/@radix-ui')) {
+            return 'vendor-ui'
+          }
+          if (id.includes('node_modules')) {
+            return 'vendor-misc'
+          }
         }
       }
     }
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
+    include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
   }
 })

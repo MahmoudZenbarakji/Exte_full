@@ -35,12 +35,26 @@
       .test-button:hover {
         background: #0056b3;
       }
+      .working-button {
+        background: #28a745;
+        font-size: 1.2rem;
+        padding: 15px 30px;
+      }
+      .working-button:hover {
+        background: #218838;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>Exte Frontend</h1>
-      <p>Testing different React loading methods...</p>
+      <p>Due to React build issues, we're using a static HTML version that works perfectly!</p>
+      
+      <a href="/working-app.html" class="test-button working-button">🚀 Go to Working App</a>
+      
+      <hr style="margin: 20px 0;">
+      
+      <h3>Debug Options:</h3>
       <a href="/index-cdn.html" class="test-button">Test CDN Version</a>
       <a href="/src/main.jsx" class="test-button">Test Build Version</a>
     </div>

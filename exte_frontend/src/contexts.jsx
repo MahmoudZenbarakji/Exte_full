@@ -159,7 +159,7 @@ export const CartProvider = ({ children }) => {
         image: item.product.images && item.product.images.length > 0 
           ? (item.product.images[0].url.startsWith('http') 
               ? item.product.images[0].url 
-              : `http://localhost:3000${item.product.images[0].url}`)
+              : `https://backend-exte.onrender.com${item.product.images[0].url}`)
           : 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=400&fit=crop',
         category: item.product.category?.name || 'Category',
         color: item.color,

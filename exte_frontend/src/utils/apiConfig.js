@@ -2,12 +2,12 @@
 // This file helps manage API configuration across the application
 
 export const getApiConfig = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'https://backend-exte.onrender.com/api';
+  const API_URL = import.meta.env.VITE_API_URL || "https://backend-exte.onrender.com/api";
   const appName = import.meta.env.VITE_APP_NAME || 'Exte E-commerce';
   const environment = import.meta.env.MODE || 'development';
   
   return {
-    apiUrl,
+    apiUrl: API_URL,
     appName,
     environment,
     isDevelopment: environment === 'development',

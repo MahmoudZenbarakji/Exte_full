@@ -1,16 +1,14 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom/client'
 
 // Simple test component to verify React is working
 function TestApp() {
-  return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>React App is Working!</h1>
-      <p>If you can see this, React is properly loaded.</p>
-      <button onClick={() => alert('React is working!')}>
-        Test React
-      </button>
-    </div>
+  return React.createElement('div', { style: { padding: '20px', textAlign: 'center' } },
+    React.createElement('h1', null, 'React App is Working!'),
+    React.createElement('p', null, 'If you can see this, React is properly loaded.'),
+    React.createElement('button', { 
+      onClick: () => alert('React is working!') 
+    }, 'Test React')
   )
 }
 
@@ -22,5 +20,5 @@ if (!rootElement) {
   throw new Error('Root element not found')
 }
 
-const root = createRoot(rootElement)
-root.render(<TestApp />)
+const root = ReactDOM.createRoot(rootElement)
+root.render(React.createElement(TestApp))

@@ -2,10 +2,24 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'classic',
+      jsxImportSource: 'react',
+    })
+  ],
   build: {
-    target: 'es2015',
-    minify: false,
-    sourcemap: true,
+    target: 'esnext',
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        format: 'es',
+        manualChunks: undefined,
+      }
+    }
+  },
+  esbuild: {
+    jsx: 'automatic'
   }
 })

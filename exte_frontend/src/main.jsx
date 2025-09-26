@@ -1,16 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-
-// Simple test component to verify React is working
-function TestApp() {
-  return React.createElement('div', { style: { padding: '20px', textAlign: 'center' } },
-    React.createElement('h1', null, 'React App is Working!'),
-    React.createElement('p', null, 'If you can see this, React is properly loaded.'),
-    React.createElement('button', { 
-      onClick: () => alert('React is working!') 
-    }, 'Test React')
-  )
-}
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import ErrorBoundary from './ErrorBoundary.jsx'
 
 // Ensure React is available globally
 window.React = React
@@ -20,5 +11,9 @@ if (!rootElement) {
   throw new Error('Root element not found')
 }
 
-const root = ReactDOM.createRoot(rootElement)
-root.render(React.createElement(TestApp))
+const root = createRoot(rootElement)
+root.render(
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+)

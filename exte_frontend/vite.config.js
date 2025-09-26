@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   build: {
     target: 'es2020',
-    minify: 'esbuild',
+    minify: false, // Disable minification to test if it's causing the issue
     sourcemap: true,
     rollupOptions: {
       output: {

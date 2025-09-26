@@ -10,8 +10,6 @@ export default defineConfig({
       fastRefresh: true,
       // Use automatic JSX runtime
       jsxRuntime: 'automatic',
-      // Enable strict mode
-      strictMode: true,
     })
   ],
   resolve: {
@@ -24,81 +22,24 @@ export default defineConfig({
     }
   },
   build: {
-    // Bundle optimization
+    // Simplified build configuration
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // Vendor chunks
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react'
-            }
-            if (id.includes('react-router')) {
-              return 'vendor-router'
-            }
-            if (id.includes('@tanstack/react-query')) {
-              return 'vendor-query'
-            }
-            if (id.includes('axios')) {
-              return 'vendor-http'
-            }
-            if (id.includes('@radix-ui') || id.includes('@headlessui')) {
-              return 'vendor-ui'
-            }
-            if (id.includes('lucide-react')) {
-              return 'vendor-icons'
-            }
-            return 'vendor-misc'
-          }
-          
-          // Feature chunks
-          if (id.includes('src/dashboard')) {
-            return 'dashboard'
-          }
-          if (id.includes('src/components') && id.includes('Product')) {
-            return 'products'
-          }
-          if (id.includes('src/components') && id.includes('Cart')) {
-            return 'cart'
-          }
-          if (id.includes('src/components') && id.includes('Checkout')) {
-            return 'checkout'
-          }
-        },
-        // Optimize chunk names
-        chunkFileNames: (chunkInfo) => {
-          const facadeModuleId = chunkInfo.facadeModuleId
-          if (facadeModuleId) {
-            const name = facadeModuleId.split('/').pop().replace('.jsx', '').replace('.js', '')
-            return `assets/${name}-[hash].js`
-          }
-          return 'assets/[name]-[hash].js'
-        },
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
-          const extType = assetInfo.name.split('.').at(1)
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            return `assets/images/[name]-[hash][extname]`
-          }
-          if (/woff2?|eot|ttf|otf/i.test(extType)) {
-            return `assets/fonts/[name]-[hash][extname]`
-          }
-          return `assets/[name]-[hash][extname]`
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          query: ['@tanstack/react-query'],
         }
       }
     },
     // Enable source maps for debugging
-    sourcemap: process.env.NODE_ENV === 'development',
+    sourcemap: false,
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,
     // Minify for production
     minify: 'esbuild',
-    // Enable CSS code splitting
-    cssCodeSplit: true,
     // Target modern browsers
     target: 'esnext',
-    // Enable tree shaking
-    treeshake: true,
   },
   // Development server optimization
   server: {

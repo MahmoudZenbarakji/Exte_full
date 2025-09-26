@@ -2,7 +2,7 @@
 // This file helps manage API configuration across the application
 
 export const getApiConfig = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://backend-exte.onrender.com/api';
   const appName = import.meta.env.VITE_APP_NAME || 'Exte E-commerce';
   const environment = import.meta.env.MODE || 'development';
   
@@ -38,11 +38,13 @@ export const getValidatedApiUrl = () => {
   
   if (!isValid) {
     console.warn('⚠️ Invalid API URL format:', config.apiUrl);
-    return 'http://localhost:3000/api'; // Fallback
+    return 'https://backend-exte.onrender.com/api'; // Fallback
   }
   
   return config.apiUrl;
 };
+
+
 
 
 

@@ -8,8 +8,10 @@ export default defineConfig({
     react({
       // Enable React Fast Refresh
       fastRefresh: true,
-      // Optimize JSX runtime
-      jsxRuntime: 'automatic',
+      // Use classic JSX runtime for better compatibility
+      jsxRuntime: 'classic',
+      // Enable strict mode
+      strictMode: true,
     })
   ],
   resolve: {

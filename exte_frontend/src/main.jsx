@@ -7,8 +7,11 @@ import { initReactErrorDetection } from './utils/reactErrorDetector.js'
 // Initialize React error detection
 initReactErrorDetection()
 
-// Ensure React is available globally
-window.React = React
+// Only set global React if it's not already available
+// This prevents conflicts with bundled React
+if (typeof window.React === 'undefined') {
+  window.React = React
+}
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {

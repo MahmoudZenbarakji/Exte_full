@@ -113,6 +113,32 @@ export const setupReactErrorHandler = () => {
         colno: event.colno
       });
       
+      // Check for specific causes
+      console.log('🔍 Diagnosing React Children Error...');
+      
+      // Check if React is available
+      if (typeof React === 'undefined') {
+        console.error('❌ React is not available globally');
+      } else {
+        console.log('✅ React is available');
+        
+        // Check React.Children specifically
+        if (typeof React.Children === 'undefined') {
+          console.error('❌ React.Children is undefined - This is the root cause!');
+        } else {
+          console.log('✅ React.Children is available');
+        }
+      }
+      
+      // Check for multiple React instances
+      const reactInstances = [];
+      if (window.React) reactInstances.push('window.React');
+      if (typeof React !== 'undefined') reactInstances.push('global React');
+      
+      if (reactInstances.length > 1) {
+        console.warn('⚠️ Multiple React instances detected:', reactInstances);
+      }
+      
       // Log debug info
       logReactDebugInfo();
       
@@ -145,6 +171,7 @@ export const initReactErrorDetection = () => {
     }
   }, 1000);
 };
+
 
 
 

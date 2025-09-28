@@ -15,16 +15,25 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Debug chunking to identify React bundling issues
+          // Keep React and React-DOM together to prevent Children error
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
             return 'vendor-react'
           }
+          // Keep React Router with React
           if (id.includes('node_modules/react-router')) {
-            return 'vendor-router'
+            return 'vendor-react'
           }
+          // Separate UI libraries
           if (id.includes('node_modules/@radix-ui')) {
             return 'vendor-ui'
           }
+          // Keep other React-related packages with main React chunk
+          if (id.includes('node_modules/@tanstack/react-query') || 
+              id.includes('node_modules/react-hook-form') ||
+              id.includes('node_modules/react-error-boundary')) {
+            return 'vendor-react'
+          }
+          // Other vendor libraries
           if (id.includes('node_modules')) {
             return 'vendor-misc'
           }

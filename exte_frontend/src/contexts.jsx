@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      {children || null}
     </AuthContext.Provider>
   )
 }
@@ -311,7 +311,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider value={value}>
-      {children}
+      {children || null}
     </CartContext.Provider>
   )
 }
@@ -416,7 +416,7 @@ export const FavoritesProvider = ({ children }) => {
 
   return (
     <FavoritesContext.Provider value={value}>
-      {children}
+      {children || null}
     </FavoritesContext.Provider>
   )
 }

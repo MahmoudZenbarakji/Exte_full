@@ -51,3 +51,6 @@ const api = axios.create({
 ## 📋 **For Vercel Deployment**
 
 The API URL is now properly configured and will work in production. The frontend will automatically connect to your Render backend at `https://backend-exte.onrender.com/api`.
+
+
+

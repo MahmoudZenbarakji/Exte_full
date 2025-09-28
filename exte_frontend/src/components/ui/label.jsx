@@ -1,6 +1,9 @@
-import { forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
-const Label = forwardRef(({ className = '', ...props }, ref) => {
+// Safe forwardRef wrapper to prevent undefined errors
+const safeForwardRef = forwardRef || React.forwardRef || ((component) => component)
+
+const Label = safeForwardRef(({ className = '', ...props }, ref) => {
   return (
     <label
       className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`}

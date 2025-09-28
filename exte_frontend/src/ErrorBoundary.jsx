@@ -27,11 +27,13 @@ class ErrorBoundary extends React.Component {
       );
     }
 
-    return this.props.children;
+    // Safely handle children - prevent null/undefined children from causing React Children error
+    return this.props.children || null;
   }
 }
 
 export default ErrorBoundary;
+
 
 
 

@@ -160,6 +160,19 @@ export const setupReactErrorHandler = () => {
 
 // Initialize error detection
 export const initReactErrorDetection = () => {
+  // Ensure React.Children is properly initialized
+  if (typeof React !== 'undefined' && typeof React.Children === 'undefined') {
+    console.warn('React.Children is undefined, attempting to fix...');
+    // This should not happen in normal React, but let's be safe
+    try {
+      if (React.Children === undefined) {
+        console.error('React.Children is undefined - this will cause the error!');
+      }
+    } catch (error) {
+      console.error('Error checking React.Children:', error);
+    }
+  }
+  
   setupReactErrorHandler();
   logReactDebugInfo();
   

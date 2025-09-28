@@ -42,7 +42,29 @@ export const detectReactErrors = () => {
     console.log('✅ Null children protection implemented for:', components.join(', '));
   };
   
+  // Check for forwardRef issues
+  const checkForwardRef = () => {
+    if (typeof React !== 'undefined') {
+      if (typeof React.forwardRef === 'undefined') {
+        errors.push({
+          type: 'FORWARDREF_UNAVAILABLE',
+          message: 'React.forwardRef is undefined - This will cause component errors',
+          severity: 'critical'
+        });
+      } else {
+        console.log('✅ React.forwardRef is available');
+      }
+    } else {
+      errors.push({
+        type: 'REACT_UNAVAILABLE_FORWARDREF',
+        message: 'React is not available, cannot check forwardRef',
+        severity: 'critical'
+      });
+    }
+  };
+  
   checkNullChildren();
+  checkForwardRef();
   
   // Check for multiple React instances
   const reactInstances = [];

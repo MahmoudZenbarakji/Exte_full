@@ -3,14 +3,24 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
 import { initReactErrorDetection } from './utils/reactErrorDetector.js'
+import './utils/reactImportFix.js'
 
 // Initialize React error detection
 initReactErrorDetection()
 
-// Only set global React if it's not already available
-// This prevents conflicts with bundled React
+// Ensure React is available globally and forwardRef is accessible
 if (typeof window.React === 'undefined') {
   window.React = React
+}
+
+// Ensure forwardRef is available globally
+if (typeof window.React.forwardRef === 'undefined') {
+  window.React.forwardRef = React.forwardRef
+}
+
+// Additional safety check for forwardRef
+if (typeof React.forwardRef === 'undefined') {
+  console.error('React.forwardRef is undefined! This will cause component errors.');
 }
 
 const rootElement = document.getElementById('root')

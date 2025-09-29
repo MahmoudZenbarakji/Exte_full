@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react'
 
-// Safe forwardRef wrapper to prevent undefined errors
-const safeForwardRef = forwardRef || React.forwardRef || ((component) => component)
-
-const Badge = safeForwardRef(({ className = '', variant = 'default', ...props }, ref) => {
+const Badge = forwardRef(({ className = '', variant = 'default', ...props }, ref) => {
   const variants = {
     default: 'bg-gray-900 text-gray-50 hover:bg-gray-900/80',
     secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-100/80',

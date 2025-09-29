@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react'
 
-// Safe forwardRef wrapper to prevent undefined errors
-const safeForwardRef = forwardRef || React.forwardRef || ((component) => component)
-
-const Card = safeForwardRef(({ className = '', ...props }, ref) => {
+const Card = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -14,7 +11,7 @@ const Card = safeForwardRef(({ className = '', ...props }, ref) => {
 })
 Card.displayName = 'Card'
 
-const CardHeader = safeForwardRef(({ className = '', ...props }, ref) => {
+const CardHeader = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -25,7 +22,7 @@ const CardHeader = safeForwardRef(({ className = '', ...props }, ref) => {
 })
 CardHeader.displayName = 'CardHeader'
 
-const CardTitle = safeForwardRef(({ className = '', ...props }, ref) => {
+const CardTitle = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <h3
       ref={ref}
@@ -36,7 +33,7 @@ const CardTitle = safeForwardRef(({ className = '', ...props }, ref) => {
 })
 CardTitle.displayName = 'CardTitle'
 
-const CardDescription = safeForwardRef(({ className = '', ...props }, ref) => {
+const CardDescription = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <p
       ref={ref}
@@ -47,7 +44,7 @@ const CardDescription = safeForwardRef(({ className = '', ...props }, ref) => {
 })
 CardDescription.displayName = 'CardDescription'
 
-const CardContent = safeForwardRef(({ className = '', ...props }, ref) => {
+const CardContent = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <div
       ref={ref}
@@ -58,7 +55,7 @@ const CardContent = safeForwardRef(({ className = '', ...props }, ref) => {
 })
 CardContent.displayName = 'CardContent'
 
-const CardFooter = safeForwardRef(({ className = '', ...props }, ref) => {
+const CardFooter = forwardRef(({ className = '', ...props }, ref) => {
   return (
     <div
       ref={ref}

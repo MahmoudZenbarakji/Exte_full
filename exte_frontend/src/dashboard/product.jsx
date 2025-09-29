@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { PlusIcon, PencilIcon, TrashIcon, PhotoIcon } from '@heroicons/react/24/outline'
-// import { ArrowLeft as ArrowLeftIcon } from 'lucide-react'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import  {Textarea} from './components/ui/textarea'
@@ -1125,7 +1124,6 @@ export default function Products() {
                     onClick={handleBackToProducts}
                     className="flex items-center gap-2"
                   >
-                    {/* <ArrowLeftIcon className="h-4 w-4" /> */}
                     Back to Products
                   </Button>
                 </div>

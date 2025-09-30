@@ -4,6 +4,7 @@ import App from './App.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
 import { initReactErrorDetection } from './utils/reactErrorDetector.js'
 import './utils/reactImportFix.js'
+import './utils/heroiconsFix.js'
 
 // Initialize React error detection
 initReactErrorDetection()
